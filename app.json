@@ -24,6 +24,7 @@
       "package": "com.leocodeio.app"
     },
     "web": {
+      "bundler": "metro",
       "output": "static",
       "favicon": "./assets/images/favicon.png"
     },
