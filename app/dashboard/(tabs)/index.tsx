@@ -176,90 +176,83 @@ export default function HomeScreen() {
   );
 
   return (
-    <View className="bg-white">
+    <View className="bg-white w-screen">
       <DashboardHeader />
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: 120 }}
-      >
-        {/* Diwali Sale Banner */}
-        <View className="mb-5 px-4 mx-0 w-full">
-          <View className="w-full h-40 mx-0 overflow-hidden bg-red-500 border border-t-white border-x-red-500 border-b-red-500 py-6 rounded-xl">
-            <View className="absolute inset-0 flex flex-col justify-center px-4 w-full">
-              <View className="items-center w-full">
-                <Text className="text-2xl font-bold text-white">
-                  Mega Diwali Sale
-                </Text>
-              </View>
-              <ScrollView
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                contentContainerStyle={{ paddingVertical: 12 }}
-              >
-                <View className="flex-row gap-3 px-1">
-                  {DIWALI_CATEGORIES.map((c) => (
-                    <View
-                      key={c.id}
-                      className="bg-gray-200 p-2 rounded-lg items-center w-24 h-24 shadow-sm"
-                    >
-                      <Text className="text-[11px] font-medium text-center">
-                        {c.title}
-                      </Text>
-                      <Text className="text-[11px] font-medium text-center">
-                        {c.subtitle}
-                      </Text>
-                      <View className="w-12 h-12 mt-1 items-center justify-center">
-                        <Image
-                          source={c.image}
-                          style={{
-                            width: 48,
-                            height: 48,
-                            resizeMode: "contain",
-                          }}
-                        />
-                      </View>
+      {/* Diwali Sale Banner */}
+        <View className="w-full h-48 mx-0 overflow-hidden bg-red-500 border border-t-white border-x-red-500 border-b-red-500 py-6">
+          <View className="absolute inset-0 flex flex-col justify-center px-4 w-full">
+            <View className="items-center w-full">
+              <Text className="text-2xl font-bold text-white">
+                Mega Diwali Sale
+              </Text>
+            </View>
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={{ paddingVertical: 12 }}
+            >
+              <View className="flex-row gap-3 px-1">
+                {DIWALI_CATEGORIES.map((c) => (
+                  <View
+                    key={c.id}
+                    className="bg-gray-200 p-2 rounded-lg items-center w-24 h-32 shadow-sm"
+                  >
+                    <Text className="text-[11px] font-medium text-center">
+                      {c.title}
+                    </Text>
+                    <Text className="text-[11px] font-medium text-center">
+                      {c.subtitle}
+                    </Text>
+                    <View className="w-12 h-18 mt-1 items-center justify-center">
+                      <Image
+                        source={c.image}
+                        style={{
+                          width: 48,
+                          height: 48,
+                          resizeMode: "contain",
+                        }}
+                      />
                     </View>
-                  ))}
-                </View>
-              </ScrollView>
-            </View>
+                  </View>
+                ))}
+              </View>
+            </ScrollView>
           </View>
-        </View>
+      </View>
 
-        {/* Bestsellers */}
-        <View className="px-4 mb-8">
-          <Text className="font-bold text-xl mb-4 text-gray-900">
-            Bestsellers
+      {/* Bestsellers */}
+      <View className="px-4 mb-8">
+        <Text className="font-bold text-xl mb-4 text-gray-900">
+          Bestsellers
+        </Text>
+        <FlatList
+          data={BESTSELLERS}
+          renderItem={renderBestseller}
+          keyExtractor={(item) => item.id.toString()}
+          numColumns={3}
+          scrollEnabled={false}
+          columnWrapperStyle={{ gap: 12 }}
+          ItemSeparatorComponent={() => <View style={{ height: 12 }} />}
+        />
+      </View>
+
+      {/* Grocery & Kitchen Category Slider */}
+      <View className="px-4 mb-8">
+        <View className="flex-row items-center justify-between mb-3">
+          <Text className="text-lg font-bold text-gray-900">
+            {GROCERY_CATEGORY.title}
           </Text>
-          <FlatList
-            data={BESTSELLERS}
-            renderItem={renderBestseller}
-            keyExtractor={(item) => item.id.toString()}
-            numColumns={3}
-            scrollEnabled={false}
-            columnWrapperStyle={{ gap: 12 }}
-            ItemSeparatorComponent={() => <View style={{ height: 12 }} />}
-          />
         </View>
-
-        {/* Grocery & Kitchen Category Slider */}
-        <View className="px-4 mb-8">
-          <View className="flex-row items-center justify-between mb-3">
-            <Text className="text-lg font-bold text-gray-900">
-              {GROCERY_CATEGORY.title}
-            </Text>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{ paddingRight: 16 }}
+        >
+          <View className="flex-row">
+            {GROCERY_CATEGORY.items.map(renderCategoryItem)}
           </View>
-          <ScrollView
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={{ paddingRight: 16 }}
-          >
-            <View className="flex-row">
-              {GROCERY_CATEGORY.items.map(renderCategoryItem)}
-            </View>
-          </ScrollView>
-        </View>
-      </ScrollView>
+        </ScrollView>
+      </View>
     </View>
   );
 }
