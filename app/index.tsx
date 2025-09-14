@@ -1,7 +1,7 @@
+import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import { useEffect } from "react";
-import { View, Text } from "react-native";
-import { Image } from "expo-image";
+import { View } from "react-native";
 
 import "@/global.css";
 
@@ -24,14 +24,12 @@ export default function SplashScreen() {
   console.log("SPLASH SCREEN: Render function called");
 
   return (
-    <View className="flex-1 bg-amber-400 justify-center items-center">
+    <View className="flex-1 bg-[#F7CB45] justify-center items-center">
       <Image
         source={require("@/assets/splash-logo.png")}
-        className="w-48 h-30 mb-5"
         contentFit="contain"
+        style={{ width: 300, height: 300 }}
       />
-      <Text className="text-3xl font-bold text-black mb-2">blinkit</Text>
-      <Text className="text-base text-black">India&apos;s Last Minute App</Text>
     </View>
   );
 }
