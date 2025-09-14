@@ -1,26 +1,93 @@
-import { View, Text } from 'react-native';
+import React, { useCallback } from 'react';
+import { View, Text, Image, FlatList, ListRenderItem, ScrollView, Pressable } from 'react-native';
 import DashboardHeader from '@/components/dashboard-header';
 
+// Category & item types
+interface CategoryItem {
+  name: string;
+  image: any; // local asset via require
+}
+interface CategorySection {
+  title: string;
+  items: CategoryItem[];
+}
+
+const CATEGORIES: CategorySection[] = [
+  {
+    title: 'Grocery & Kitchen',
+    items: [
+      { name: 'Vegetables & Fruits', image: require('@/assets/dashboard/catalog/cat_01.png') },
+      { name: 'Atta, Dal & Rice', image: require('@/assets/dashboard/catalog/cat_02.png') },
+      { name: 'Oil, Ghee & Masala', image: require('@/assets/dashboard/catalog/cat_03.png') },
+      { name: 'Dairy, Bread & Milk', image: require('@/assets/dashboard/catalog/cat_04.png') },
+      { name: 'Biscuits, Snacks & Chocolates', image: require('@/assets/dashboard/catalog/cat_05.png') },
+      { name: 'Dry Fruits & Cereals', image: require('@/assets/dashboard/catalog/cat_06.png') },
+      { name: 'Kitchen & Appliances', image: require('@/assets/dashboard/catalog/cat_07.png') },
+      { name: 'Tea & Coffee', image: require('@/assets/dashboard/catalog/cat_08.png') },
+      { name: 'Ice-Creams & Frozen Foods', image: require('@/assets/dashboard/catalog/cat_09.png') },
+      { name: 'Noodles, Sauces & Instant Food', image: require('@/assets/dashboard/catalog/cat_10.png') },
+    ],
+  },
+  {
+    title: 'Snacks & Drinks',
+    items: [
+      { name: 'Chips & Namkeens', image: require('@/assets/dashboard/catalog/cat_11.png') },
+      { name: 'Sweets & Chocolates', image: require('@/assets/dashboard/catalog/cat_12.png') },
+      { name: 'Drinks & Juices', image: require('@/assets/dashboard/catalog/cat_01.png') },
+      { name: 'Sauces & Spreads', image: require('@/assets/dashboard/catalog/cat_02.png') },
+      { name: 'Ready to Cook', image: require('@/assets/dashboard/catalog/cat_03.png') },
+    ],
+  },
+  {
+    title: 'Household Essentials',
+    items: [
+      { name: 'Cleaning Essentials', image: require('@/assets/dashboard/catalog/cat_04.png') },
+      { name: 'Detergents', image: require('@/assets/dashboard/catalog/cat_05.png') },
+      { name: 'Fresheners', image: require('@/assets/dashboard/catalog/cat_06.png') },
+      { name: 'Tissues & Rolls', image: require('@/assets/dashboard/catalog/cat_07.png') },
+    ],
+  },
+];
+
 export default function CatalogScreen() {
+  const renderItem: ListRenderItem<CategoryItem> = useCallback(({ item }) => {
+    return (
+      <Pressable className="w-28 mr-3" onPress={() => {}}>
+        <View className="w-28 h-28 bg-white rounded-lg shadow-sm items-center justify-center p-2 mb-2">
+          <Image source={item.image} style={{ width: '80%', height: '80%', resizeMode: 'contain' }} />
+        </View>
+        <Text numberOfLines={2} className="text-[11px] font-medium text-gray-700 leading-tight">
+          {item.name}
+        </Text>
+      </Pressable>
+    );
+  }, []);
+
   return (
     <View className="flex-1 bg-gray-50">
       <DashboardHeader />
-      <View className="flex-1 justify-center items-center">
-        <View className="items-center">
-          <Text className="text-3xl font-bold text-gray-900 mb-4">Catalog</Text>
-          <Text className="text-lg text-gray-600 mb-6">Browse our catalog!</Text>
-          <View className="flex-row gap-4 max-w-[300px]">
-            <View className="bg-white p-4 rounded-lg shadow-sm flex-1">
-              <View className="w-full h-20 bg-gray-200 rounded mb-3" />
-              <Text className="text-sm text-gray-700">Product 1</Text>
+      <ScrollView contentContainerStyle={{ paddingBottom: 96 }} showsVerticalScrollIndicator={false}>
+        <View className="px-4 pt-6">
+          {CATEGORIES.map((section) => (
+            <View key={section.title} className="mb-8">
+              <View className="flex-row items-center justify-between mb-3">
+                <Text className="text-lg font-bold text-gray-900">{section.title}</Text>
+                <Pressable className="px-2 py-1" onPress={() => {}}>
+                  <Text className="text-[11px] text-emerald-600 font-medium">See all</Text>
+                </Pressable>
+              </View>
+              <FlatList
+                horizontal
+                data={section.items}
+                renderItem={renderItem}
+                keyExtractor={(item) => item.name}
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={{ paddingRight: 16 }}
+              />
             </View>
-            <View className="bg-white p-4 rounded-lg shadow-sm flex-1">
-              <View className="w-full h-20 bg-gray-200 rounded mb-3" />
-              <Text className="text-sm text-gray-700">Product 2</Text>
-            </View>
-          </View>
+          ))}
         </View>
-      </View>
+      </ScrollView>
     </View>
   );
 }
