@@ -53,7 +53,7 @@ export default function CatalogScreen() {
   const renderItem: ListRenderItem<CategoryItem> = useCallback(({ item }) => {
     return (
       <Pressable className="w-28 mr-3" onPress={() => {}}>
-        <View className="w-28 h-28 bg-white rounded-lg shadow-sm items-center justify-center p-2 mb-2">
+        <View className="w-28 h-28 bg-[#D9EBEB] rounded-lg shadow-sm items-center justify-center p-2 mb-2">
           <Image source={item.image} style={{ width: '80%', height: '80%', resizeMode: 'contain' }} />
         </View>
         <Text numberOfLines={2} className="text-[11px] font-medium text-gray-700 leading-tight">
@@ -72,9 +72,6 @@ export default function CatalogScreen() {
             <View key={section.title} className="mb-8">
               <View className="flex-row items-center justify-between mb-3">
                 <Text className="text-lg font-bold text-gray-900">{section.title}</Text>
-                <Pressable className="px-2 py-1" onPress={() => {}}>
-                  <Text className="text-[11px] text-emerald-600 font-medium">See all</Text>
-                </Pressable>
               </View>
               <FlatList
                 horizontal

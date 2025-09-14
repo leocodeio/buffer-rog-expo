@@ -41,10 +41,10 @@ const BESTSELLERS: BestsellerProduct[] = [
 export default function ShopScreen() {
   const renderItem: ListRenderItem<BestsellerProduct> = useCallback(({ item }) => {
     return (
-      <View className="rounded-lg overflow-hidden bg-white border border-gray-100">
+      <View className="rounded-lg overflow-hidden bg-white border border-white">
         <View className="h-24 w-full relative bg-gray-50 items-center justify-center">
-          <Image source={item.image} style={{ width: '70%', height: '70%', resizeMode: 'contain' }} />
-          <Pressable className="bg-white border border-green-500 px-2 py-1 rounded absolute -bottom-2 right-1" onPress={() => {}}>
+          <Image source={item.image} style={{ width: '100%', height: '100%', resizeMode: 'contain' }} />
+          <Pressable className="bg-white border border-green-500 px-2 py-1 rounded absolute -bottom-2 right-0" onPress={() => {}}>
             <Text className="text-[10px] font-semibold text-green-600">ADD</Text>
           </Pressable>
         </View>
