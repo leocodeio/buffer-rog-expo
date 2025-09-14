@@ -11,8 +11,8 @@ export default function SplashScreen() {
   useEffect(() => {
     console.log("SPLASH SCREEN: useEffect triggered");
     const timer = setTimeout(() => {
-      console.log("SPLASH SCREEN: Navigating to dashboard");
-      router.replace("/dashboard");
+      console.log("SPLASH SCREEN: Navigating to landing");
+      router.replace("/landing");
     }, 1000);
 
     return () => {
