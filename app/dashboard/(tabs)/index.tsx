@@ -146,9 +146,7 @@ export default function HomeScreen() {
               {item.deliveryTime} mins
             </Text>
           </View>
-          <View className="flex-row items-center justify-between mt-1">
-            <Text className="font-bold text-xs">₹ {item.price}</Text>
-          </View>
+          <Text className="font-bold text-xs">₹ {item.price}</Text>
         </View>
       </View>
     ),
@@ -179,45 +177,45 @@ export default function HomeScreen() {
     <View className="bg-white w-screen h-screen">
       <DashboardHeader />
       {/* Diwali Sale Banner */}
-        <View className="w-full h-48 mx-0 overflow-hidden bg-red-500 border border-t-white border-x-red-500 border-b-red-500 py-6">
-          <View className="absolute inset-0 flex flex-col justify-center px-4 w-full">
-            <View className="items-center w-full">
-              <Text className="text-2xl font-bold text-white">
-                Mega Diwali Sale
-              </Text>
-            </View>
-            <ScrollView
-              horizontal
-              showsHorizontalScrollIndicator={false}
-              contentContainerStyle={{ paddingVertical: 12 }}
-            >
-              <View className="flex-row gap-3 px-1">
-                {DIWALI_CATEGORIES.map((c) => (
-                  <View
-                    key={c.id}
-                    className="bg-gray-200 p-2 rounded-lg items-center w-24 h-32 shadow-sm"
-                  >
-                    <Text className="text-[11px] font-medium text-center">
-                      {c.title}
-                    </Text>
-                    <Text className="text-[11px] font-medium text-center">
-                      {c.subtitle}
-                    </Text>
-                    <View className="w-12 h-18 mt-1 items-center justify-center">
-                      <Image
-                        source={c.image}
-                        style={{
-                          width: 48,
-                          height: 48,
-                          resizeMode: "contain",
-                        }}
-                      />
-                    </View>
-                  </View>
-                ))}
-              </View>
-            </ScrollView>
+      <View className="w-full h-48 mx-0 overflow-hidden bg-red-500 border border-t-white border-x-red-500 border-b-red-500 py-6">
+        <View className="absolute inset-0 flex flex-col justify-center px-4 w-full">
+          <View className="items-center w-full">
+            <Text className="text-2xl font-bold text-white">
+              Mega Diwali Sale
+            </Text>
           </View>
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={{ paddingVertical: 12 }}
+          >
+            <View className="flex-row gap-3 px-1">
+              {DIWALI_CATEGORIES.map((c) => (
+                <View
+                  key={c.id}
+                  className="bg-gray-200 p-2 rounded-lg items-center w-24 h-32 shadow-sm"
+                >
+                  <Text className="text-[11px] font-medium text-center">
+                    {c.title}
+                  </Text>
+                  <Text className="text-[11px] font-medium text-center">
+                    {c.subtitle}
+                  </Text>
+                  <View className="w-12 h-18 mt-1 items-center justify-center">
+                    <Image
+                      source={c.image}
+                      style={{
+                        width: 48,
+                        height: 48,
+                        resizeMode: "contain",
+                      }}
+                    />
+                  </View>
+                </View>
+              ))}
+            </View>
+          </ScrollView>
+        </View>
       </View>
 
       {/* Bestsellers */}
