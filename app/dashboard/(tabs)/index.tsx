@@ -176,7 +176,7 @@ export default function HomeScreen() {
   );
 
   return (
-    <View className="bg-white w-screen">
+    <View className="bg-white w-screen h-screen">
       <DashboardHeader />
       {/* Diwali Sale Banner */}
         <View className="w-full h-48 mx-0 overflow-hidden bg-red-500 border border-t-white border-x-red-500 border-b-red-500 py-6">
